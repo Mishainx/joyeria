@@ -1,13 +1,15 @@
 import NavBar from "../headers/nav/navbar";
+import Image from "next/image";
 
 export default function Hero() {
     return (
       <section className="relative bg-gray-800 text-white">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/path/to/your/image.jpg"
             alt="Hero Background"
             className="w-full h-full object-cover"
+            fill={true}
           />
           <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
@@ -16,7 +18,7 @@ export default function Hero() {
             Welcome to Our Website
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl mb-6">
-            Discover amazing content and find what you're looking for.
+            Discover amazing content and find what youre looking for.
           </p>
           <a
             href="#"
