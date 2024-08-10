@@ -5,11 +5,12 @@ import { cookies } from "next/headers";
 
 export const POST = async (req) => {
   try {
-
+    console.log("hola")
     const body = await req.json();
+    console.log(body)
     const userCredential = await signInWithEmailAndPassword(auth, body.email, body.password);
     const user = userCredential.user;
-
+    console.log(user)
     if (user) {
       const token = await user.getIdToken();
 
