@@ -21,7 +21,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://vps-4299810-x.dattaweb.com/api/login", {
+      const response = await fetch("https://www.veronicagalainena.com.ar/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
