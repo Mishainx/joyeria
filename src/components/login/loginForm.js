@@ -21,7 +21,6 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("hola")
       const response = await fetch("https://vps-4299810-x.dattaweb.com/api/login", {
         method: "POST",
         headers: {
@@ -33,7 +32,6 @@ const LoginForm = () => {
         }),
       });
 
-      console.log(response)
   
       if (response.ok) {
         router.push("/");
