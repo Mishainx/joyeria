@@ -2,20 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* styles/global.css */
-.perspective-1000 {
-    perspective: 1000px; /* Ajusta según sea necesario */
-  }
-  
-  .transition-transform {
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .transform-3d {
-    transform-style: preserve-3d;
-  }
-  
-  .sidebar-transform {
-    transform: rotateY(0deg);
-  }
-  
+body{
+    background-color: black;
+}

@@ -13,7 +13,7 @@ export default function MobileNav({pages}){
     return (
         <div className="flex lg:hidden">
             <div onClick={handleMenu}>
-                <MenuIcon width={30} height={30} className="text-white cursor-pointer"/>
+            <MenuIcon width={30} height={30} className="text-white cursor-pointer"/>
             </div>
             <MenuList open={open} handleClose={handleClose} pages={pages}/>
         </div>

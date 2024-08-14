@@ -1,8 +1,9 @@
+import BraceletIcon from "@/src/icons/BraceletIcon";
 import DesktopNav from "./desktopNav";
 import MobileNav from "./mobileNav";
 
 const pages=[
-    {name:"Catalogo",path:"/catalogo"},
+    {name:"Catálogo",path:"/catalogo",icon: <BraceletIcon width={20} height={20}/>},
     {name:"Mi taller",path:"/taller"},
 ]
 

@@ -9,8 +9,13 @@ export function middleware(request) {
       return NextResponse.next();
     }
 
+
     const cookieStore = cookies()
     const cookie = cookieStore.get('vg-ct')
+
+    console.log(`${process.env.NEXT_PUBLIC_API_URL}/api/login`)
+      
+    
 
  if(!cookie){
     return NextResponse.redirect(new URL('/proximamente', request.url))
@@ -23,6 +28,6 @@ return NextResponse.next()
 export const config = {
    matcher: [
        // Aplica a todas las rutas excepto `/login`
-       '/((?!login|proximamente).*)',
+       '/((?!login|proximamente|api).*)',
    ],
 };
