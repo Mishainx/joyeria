@@ -12,8 +12,6 @@ export function middleware(request) {
 
     const cookieStore = cookies()
     const cookie = cookieStore.get('vg-ct')
-
-    console.log(`${process.env.NEXT_PUBLIC_API_URL}/api/login`)
       
     
 
