@@ -6,7 +6,6 @@ import { cookies } from "next/headers";
 export const POST = async (req) => {
   try {
     const body = await req.json();
-    console.log(body)
     const userCredential = await signInWithEmailAndPassword(auth, body.email, body.password);
     const user = userCredential.user;
     if (user) {
