@@ -15,10 +15,19 @@ module.exports = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        pulseShadow: {
+          '0%': { boxShadow: '0 0 20px rgba(255, 204, 0, 0.5)' },
+          '50%': { boxShadow: '0 0 50px rgba(255, 204, 0, 0.7)' },
+          '100%': { boxShadow: '0 0 20px rgba(255, 204, 0, 0.5)' },
+        },
       },
       animation: {
         fadeIn: 'fadeIn 2s ease-out forwards',
         fadeInDelayShort: 'fadeIn 3s ease-out forwards', // Usa forwards para mantener el estado final
+        pulseShadow: 'pulseShadow 1.5s ease-in-out infinite',
+      },
+      boxShadow: {
+        'loading': '0 0 30px rgba(255, 204, 0, 0.7)', // Ajusta el tamaño y la intensidad de la sombra aquí
       },
       // Define the delay utilities
       animationDelay: {
