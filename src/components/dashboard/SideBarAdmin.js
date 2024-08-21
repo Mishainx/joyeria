@@ -153,7 +153,7 @@ const buttons = [
 // Definición de iconos SVG
 // ... (Los iconos se mantienen igual)
 
-export default function Prueba({ onSelect }) {
+export default function SideBarAdmin({ onSelect }) {
   return (
     <aside className="fixed inset-y-0 left-0 z-10 flex flex-col w-14 lg:w-60 border-r bg-gray-50 h-full">
       <div className="flex items-center justify-between border-b px-4 py-2 lg:px-6 lg:py-4 text-black">

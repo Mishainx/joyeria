@@ -1,7 +1,7 @@
 "use client"
 // Dashboard.jsx
 import { useState } from 'react';
-import Prueba from './Prueba';
+import SideBarAdmin from './SideBarAdmin';
 
 const Dashboard =  ({categories}) => {
   const [selectedContent, setSelectedContent] = useState('products');
@@ -13,7 +13,7 @@ const Dashboard =  ({categories}) => {
 
   return (
     <div className="flex min-h-screen">
-      <Prueba onSelect={onSelect}/>
+      <SideBarAdmin onSelect={onSelect}/>
     </div>
   );
 };
