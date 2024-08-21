@@ -1,6 +1,6 @@
 import ProductDashboard from "./ProductDashboard"
 
-export default function Content({ selectedContent }) {
+export default function ContentAdmin({ selectedContent }) {
     const renderContent = () => {
         switch (selectedContent) {
             case 'products':

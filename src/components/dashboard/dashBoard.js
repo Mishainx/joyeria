@@ -2,6 +2,7 @@
 // Dashboard.jsx
 import { useState } from 'react';
 import SideBarAdmin from './SideBarAdmin';
+import ContentAdmin from './ContentAdmin';
 
 const Dashboard =  ({categories}) => {
   const [selectedContent, setSelectedContent] = useState('products');
@@ -14,6 +15,7 @@ const Dashboard =  ({categories}) => {
   return (
     <div className="flex min-h-screen">
       <SideBarAdmin onSelect={onSelect}/>
+      <ContentAdmin selectedContent={selectedContent}/>
     </div>
   );
 };
