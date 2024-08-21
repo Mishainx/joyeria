@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { fetchCategories } from '@/src/utils/categoriesManager';
 import CategoryButton from './CategoryButton';
+import { useCategories } from '@/src/context/categoriesContext';
 
-export default function CategoryMenu({ onCategoryChange, categories }) {
+export default function CategoryMenu({ onCategoryChange }) {
+  const  categories  = useCategories();
 
   return (
     <div className="text-center mb-8">
@@ -15,9 +15,9 @@ export default function CategoryMenu({ onCategoryChange, categories }) {
             img: '/img/categoryMenu/all-category.png', // Ruta del icono para el botón "Todos"
           }}
         />
-        {categories.map((category) => (
+        {categories?.map((category) => (
           <CategoryButton
-            key={category.id}
+            key={category.title}
             onSelect={() => onCategoryChange(category.sku)}
             category={category} // Se pasa el objeto de la categoría completo
           />

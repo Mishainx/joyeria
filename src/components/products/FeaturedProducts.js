@@ -35,9 +35,13 @@ function FeaturedProducts() {
   if (loading) return <p>Cargando productos destacados...</p>;
   if (error) return <p>Error al cargar productos: {error}</p>;
 
-  // Duplica los productos para permitir el desplazamiento continuo
   const featuredProducts = products?.payload?.filter((product) => product.featured) || [];
-  const duplicatedProducts = [...featuredProducts, ...featuredProducts];
+  
+  // Asegúrate de que haya suficiente contenido para desplazar
+  const duplicatedProducts = [
+    ...featuredProducts.map((product, index) => ({ ...product, uniqueKey: `${product.id}-1-${index}` })),
+    ...featuredProducts.map((product, index) => ({ ...product, uniqueKey: `${product.id}-2-${index}` }))
+  ];
 
   return (
     <section className="w-full mx-auto bg-slate-50 py-8">
@@ -52,7 +56,7 @@ function FeaturedProducts() {
         <div className="scroll-content">
           {duplicatedProducts.length > 0 ? (
             duplicatedProducts.map((product) => (
-              <div key={product.id} className="inline-block min-w-[250px] ">
+              <div key={product.uniqueKey} className="inline-block min-w-[250px]">
                 <ProductCard product={product} />
               </div>
             ))
@@ -66,4 +70,3 @@ function FeaturedProducts() {
 }
 
 export default FeaturedProducts;
-

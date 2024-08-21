@@ -4,7 +4,7 @@ import "../globals.css";
 import Header from "@/src/components/headers/header";
 import Footer from "@/src/components/footer/footer";
 import { ProductProvider } from "@/src/context/productContext";
-
+import { CategoryProvider } from "@/src/context/categoriesContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +20,14 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ProductProvider>
-        <Header  />
-          {children}
-        <Footer />
-      </ProductProvider>
+      <CategoryProvider>
+        <ProductProvider>
+          <Header  />
+            {children}
+          <Footer />
+        </ProductProvider>
+      </CategoryProvider>
+
       </body>
     </html>
   );

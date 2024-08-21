@@ -11,20 +11,20 @@ export function useCategories() {
 
 export function CategoryProvider({ children }) {
   const [categories, setCategories] = useState([]);
-
+  
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`);
         const data = await res.json();
         if (data && data.payload) {
-          setCategories(data.payload); // Aquí se actualiza correctamente
+          setCategories(data.payload);
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
     };
-
+  
     fetchCategories();
   }, []);
 
