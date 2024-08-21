@@ -15,6 +15,7 @@ const Dashboard =  ({categories}) => {
 
   return (
     <div className="flex min-h-screen">
+      <Prueba/>
       <Sidebar onSelect={onSelect}/>
       <Content selectedContent={selectedContent}/>
     </div>
