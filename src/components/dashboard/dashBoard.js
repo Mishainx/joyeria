@@ -1,7 +1,7 @@
 "use client"
 // Dashboard.jsx
 import { useState } from 'react';
-import Sidebar from './Sidebar';
+import Sidebar from './siderBar';
 import Content from './Content';
 
 const Dashboard =  ({categories}) => {
