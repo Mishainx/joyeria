@@ -2,8 +2,6 @@
 // Dashboard.jsx
 import { useState } from 'react';
 import Prueba from './Prueba';
-import Sidebar from './Sidebar';
-import Content from './Content';
 
 const Dashboard =  ({categories}) => {
   const [selectedContent, setSelectedContent] = useState('products');
