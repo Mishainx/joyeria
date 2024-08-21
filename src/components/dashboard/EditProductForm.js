@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCategories } from "@/src/context/categoriesContext";
 import { useProducts } from "@/src/context/productContext";
 import { validateProduct } from "@/src/utils/regExp";
@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import "react-toastify/dist/ReactToastify.css";
 
-const CreateProductForm = ({setView}) => {
+const EditProductForm = ({ setView, productId }) => {
   const categories = useCategories();
-  const {fetchProducts} = useProducts()
+  const { fetchProducts } = useProducts();
   const router = useRouter();
   const [errors, setErrors] = useState({});
   const [productData, setProductData] = useState({
@@ -21,6 +21,39 @@ const CreateProductForm = ({setView}) => {
     visible: false,
     stock: false,
   });
+  const [originalProductData, setOriginalProductData] = useState({});
+
+  // Fetch product details on component mount
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`);
+        const data = await response.json();
+        const product = data.product;
+
+        if (response.ok) {
+          setProductData({
+            name: product.name || "",
+            category: product.category || "",
+            price: product.price || "",
+            description: product.description || "",
+            featured: product.featured || false,
+            visible: product.visible || false,
+            stock: product.stock || false,
+            thumbnail: null, // Thumbnail should be handled separately
+          });
+          setOriginalProductData(product); // Save original data for comparison
+        } else {
+          toast.error(data.message || "Error al obtener los detalles del producto");
+        }
+      } catch (error) {
+        console.error("Error fetching product details:", error);
+        toast.error("Error al obtener los detalles del producto");
+      }
+    };
+
+    fetchProductDetails();
+  }, [productId]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -39,63 +72,54 @@ const CreateProductForm = ({setView}) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    // Primero, valida los datos del producto
+    // Validar los datos del producto
     const validationErrors = validateProduct(productData);
-
-    // Crea un mapa de errores para mostrar en el formulario
     const errorMap = validationErrors.reduce((acc, { field, message }) => {
       acc[field] = message;
       return acc;
     }, {});
 
-    // Si hay errores de validación, establece los errores en el estado y evita el envío del formulario
     if (Object.keys(errorMap).length > 0) {
       setErrors(errorMap);
       return;
     }
 
+    const updatedFields = {};
+
+    // Solo agrega los campos modificados
+    for (const key in productData) {
+      if (productData[key] !== originalProductData[key]) {
+        updatedFields[key] = productData[key];
+      }
+    }
+
     const formData = new FormData();
-    formData.append("name", productData.name);
-    formData.append("category", productData.category);
-    formData.append("price", productData.price);
-    formData.append("description", productData.description);
-    formData.append("featured", productData.featured);
-    formData.append("visible", productData.visible);
-    formData.append("stock", productData.stock);
+    for (const key in updatedFields) {
+      formData.append(key, updatedFields[key]);
+    }
     if (productData.thumbnail) {
       formData.append("thumbnail", productData.thumbnail);
     }
 
     try {
-      const response = await fetch("/api/products", {
-        method: "POST",
+      const response = await fetch(`/api/products/${productId}`, {
+        method: "PATCH", // Usa PATCH para actualización parcial
         body: formData,
       });
 
       const result = await response.json();
       if (response.ok) {
-        toast.success("Producto creado exitosamente");
-        setProductData({
-          name: "",
-          category: "",
-          price: "",
-          thumbnail: null,
-          description: "",
-          featured: false,
-          visible: false,
-          stock: false,
-        });
-        await fetchProducts()
+        toast.success("Producto actualizado exitosamente");
+        await fetchProducts();
         setTimeout(() => {
-          setView("list")
+          setView("list");
         }, 2000);
       } else {
-        toast.error(result.message || "Error al crear el producto");
+        toast.error(result.message || "Error al actualizar el producto");
       }
     } catch (error) {
-      console.error("Error al crear el producto:", error);
-      toast.error("Error al crear el producto");
+      console.error("Error al actualizar el producto:", error);
+      toast.error("Error al actualizar el producto");
     }
   };
 
@@ -105,7 +129,7 @@ const CreateProductForm = ({setView}) => {
       className="bg-white shadow-lg rounded-lg p-8 space-y-6 max-w-2xl mx-auto text-black"
     >
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
-        Agregar Producto
+        Editar Producto
       </h2>
       <div className="space-y-4">
         <div>
@@ -132,18 +156,14 @@ const CreateProductForm = ({setView}) => {
             <option value="" disabled>
               Selecciona una categoría
             </option>
-            {
-            Array.isArray(categories) && categories.length > 0 ? (
+            {Array.isArray(categories) && categories.length > 0 ? (
               categories.map((category) => (
                 <option key={category.sku} value={category.sku}>
                   {category.sku} - {category.title}
                 </option>
               ))
             ) : (
-              <option disabled>
-                {console.log(categories)}
-                No hay categorías disponibles
-              </option>
+              <option disabled>No hay categorías disponibles</option>
             )}
           </select>
           {errors.category && (
@@ -156,8 +176,8 @@ const CreateProductForm = ({setView}) => {
             type="number"
             name="price"
             placeholder="Precio"
-            value={productData.price}
-            onChange={handleInputChange}
+            value={productData.price || ""}
+            onChange={handleInputChange }
             className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.price && (
@@ -237,11 +257,11 @@ const CreateProductForm = ({setView}) => {
           type="submit"
           className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
         >
-          Agregar Producto
+          Actualizar Producto
         </button>
       </div>
     </form>
   );
 };
 
-export default CreateProductForm;
+export default EditProductForm;

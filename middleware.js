@@ -1,31 +1,46 @@
-import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
- 
-// This function can be marked `async` if using `await` inside
-export function middleware(request) {
-   const { pathname } = new URL(request.url);
+import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
-   if (pathname.startsWith('/_next/') || pathname.startsWith('/static/')) {
+export async function middleware(request) {
+  const { pathname } = new URL(request.url);
+
+  if (pathname.startsWith('/_next/') || pathname.startsWith('/static/')) {
+    return NextResponse.next();
+  }
+
+  const cookieStore = cookies();
+  const cookie = cookieStore.get('vg-ct');
+
+  if (!cookie) {
+    return NextResponse.redirect(new URL('/proximamente', request.url));
+  }
+
+  // Verifica el token en la API
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/token`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token: cookie.value }) // Envía el token en el cuerpo de la solicitud
+    });
+
+    if (response.ok) {
+      // Token es válido
       return NextResponse.next();
+    } else {
+      // Token no es válido o hay un error en la API
+      return NextResponse.redirect(new URL('/proximamente', request.url));
     }
-
-
-    const cookieStore = cookies()
-    const cookie = cookieStore.get('vg-ct')
-      
-    
-
- if(!cookie){
-    return NextResponse.redirect(new URL('/proximamente', request.url))
- }
-
-
-return NextResponse.next()
+  } catch (error) {
+    console.error('Error al verificar el token:', error);
+    return NextResponse.redirect(new URL('/proximamente', request.url));
+  }
 }
-// See "Matching Paths" below to learn more
+
 export const config = {
-   matcher: [
-       // Aplica a todas las rutas excepto `/login`
-       '/((?!login|proximamente|api).*)',
-   ],
+  matcher: [
+    // Aplica a todas las rutas excepto `/login`
+    '/((?!login|proximamente|api).*)',
+  ],
 };

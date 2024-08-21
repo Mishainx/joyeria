@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const AdminProductCard = ({ product }) => {
+const AdminProductCard = ({ product, onEdit }) => {
   return (
     <div className="w-full p-2  max-w-[200px] bg-white shadow-lg rounded-lg flex flex-col sm:p-3 gap-2 overflow-hidden">
       {/* Imagen del producto */}
@@ -38,7 +38,7 @@ const AdminProductCard = ({ product }) => {
 
       {/* Botones de acción */}
       <div className="flex gap-2 mt-2">
-        <button className="text-xs py-1 px-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors flex-1">
+        <button onClick={onEdit} className="text-xs py-1 px-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors flex-1">
           Editar
         </button>
         <button className="text-xs py-1 px-2 border border-red-300 rounded-md text-red-600 hover:bg-red-100 transition-colors flex-1">

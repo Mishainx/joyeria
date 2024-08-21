@@ -3,16 +3,17 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import CreateProductForm from "./createForm";
+import EditProductForm from "./EditProductForm";
 import { useProducts } from "@/src/context/productContext";
 import { useCategories } from "@/src/context/categoriesContext";
-import { handleDelete } from "@/src/firebase/productManager/productManager";
 
 const ProductDashboardLg = () => {
   const [view, setView] = useState("list");
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const { products, loading, error,deleteProduct } = useProducts();
-  const  categories  = useCategories();
+  const [editingProductId, setEditingProductId] = useState(null);
+  const { products, loading, error, deleteProduct } = useProducts();
+  const categories = useCategories();
 
   // Filtrar los productos según la búsqueda y categoría seleccionada
   const filteredProducts = products?.payload?.filter((product) => {
@@ -21,12 +22,18 @@ const ProductDashboardLg = () => {
     return matchesSearch && matchesCategory;
   });
 
-    // Función para manejar la eliminación de un producto
-    const handleDelete = (productId) => {
-      if (window.confirm("¿Estás seguro de que quieres eliminar este producto?")) {
-        deleteProduct(productId); // Llama a la función de eliminación desde el contexto
-      }
-    };
+  // Función para manejar la eliminación de un producto
+  const handleDelete = (productId) => {
+    if (window.confirm("¿Estás seguro de que quieres eliminar este producto?")) {
+      deleteProduct(productId); // Llama a la función de eliminación desde el contexto
+    }
+  };
+
+  // Función para manejar la edición de un producto
+  const handleEdit = (productId) => {
+    setEditingProductId(productId);
+    setView("edit");
+  };
 
   return (
     <div className="p-10 bg-gray-50 min-h-screen hidden lg:block">
@@ -68,7 +75,7 @@ const ProductDashboardLg = () => {
               >
                 <option value="all">Todas las categorías</option>
                 {categories?.map((category) => (
-             <option key={category.sku} value={category.sku}>
+                  <option key={category.sku} value={category.sku}>
                     {`${category.sku} - ${category.title}`}
                   </option>
                 ))}
@@ -131,12 +138,18 @@ const ProductDashboardLg = () => {
                         <td className="px-4 py-2 text-center text-sm text-gray-500">{product.featured ? "Sí" : "No"}</td>
                         <td className="px-4 py-2 text-center text-sm text-gray-500">{product.visible ? "Sí" : "No"}</td>
                         <td className="px-4 py-2 text-center text-sm font-medium">
-                          <button className="text-darkGold hover:text-indigo-900">Editar</button>
                           <button 
-                          className="ml-4 text-red-600 hover:text-red-900"
-                          onClick={() => handleDelete(product.id)}  >
+                            className="text-darkGold hover:text-indigo-900"
+                            onClick={() => handleEdit(product.id)}
+                          >
+                            Editar
+                          </button>
+                          <button 
+                            className="ml-4 text-red-600 hover:text-red-900"
+                            onClick={() => handleDelete(product.id)}
+                          >
                             Eliminar
-                            </button>
+                          </button>
                         </td>
                       </tr>
                     ))
@@ -153,7 +166,13 @@ const ProductDashboardLg = () => {
           </div>
         )}
 
-        {view === "create" && <CreateProductForm  setView={setView}/>}
+        {view === "create" && <CreateProductForm setView={setView} />}
+        {view === "edit" && editingProductId && (
+          <EditProductForm 
+            setView={setView} 
+            productId={editingProductId} 
+          />
+        )}
       </div>
     </div>
   );

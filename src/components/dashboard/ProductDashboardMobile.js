@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AdminProductCard from "./AdminProductCard";
 import CreateProductForm from "./createForm";
+import EditProductForm from "./EditProductForm";
 import { useProducts } from "@/src/context/productContext";
 import { useCategories } from "@/src/context/categoriesContext";
 
@@ -10,8 +11,9 @@ const ProductDashboardMobile = () => {
   const [view, setView] = useState("list");
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [editingProductId, setEditingProductId] = useState(null);
   const { products, loading, error } = useProducts();
-  const  categories  = useCategories();
+  const categories = useCategories();
 
   // Filtrar los productos según la búsqueda y categoría seleccionada
   const filteredProducts = products?.payload?.filter((product) => {
@@ -19,6 +21,12 @@ const ProductDashboardMobile = () => {
     const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  // Función para manejar la edición de un producto
+  const handleEdit = (productId) => {
+    setEditingProductId(productId);
+    setView("edit");
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
@@ -77,7 +85,7 @@ const ProductDashboardMobile = () => {
                   <p className="text-center text-sm text-red-500">Error al cargar los productos.</p>
                 ) : filteredProducts.length > 0 ? (
                   filteredProducts.map((product) => (
-                    <AdminProductCard key={product.id} product={product} />
+                    <AdminProductCard key={product.id} product={product} onEdit={() => handleEdit(product.id)} />
                   ))
                 ) : (
                   <p className="text-center text-sm text-gray-500">No hay productos disponibles.</p>
@@ -87,6 +95,12 @@ const ProductDashboardMobile = () => {
           )}
 
           {view === "create" && <CreateProductForm />}
+          {view === "edit" && editingProductId && (
+            <EditProductForm 
+              setView={setView} 
+              productId={editingProductId} 
+            />
+          )}
         </div>
       </main>
     </div>

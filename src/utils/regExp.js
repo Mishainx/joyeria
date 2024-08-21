@@ -25,8 +25,18 @@ export function validateBoolean(value) {
   }
   
   export function validatePrice(price) {
+    // Asegúrate de convertir el valor a string para usar la expresión regular
     const regex = /^\d+$/;
-    return typeof price === 'string' && regex.test(price) && Number.isInteger(Number(price)) && Number(price) > 0;
+    // Si el valor es un número, conviértelo a string para validarlo con la expresión regular
+    const priceStr = typeof price === 'number' ? price.toString() : price;
+  
+    // Valida si el valor es un string o un número, y si es un número entero mayor que 0
+    return (
+      (typeof price === 'string' || typeof price === 'number') &&
+      regex.test(priceStr) &&
+      Number.isInteger(Number(price)) &&
+      Number(price) > 0
+    );
   }
 
   const validations = {
