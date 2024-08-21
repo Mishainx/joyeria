@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "category": "necklaces",
+    "name": "collar 1",
+    "description": "Handmade link necklace with artisan pendant. Bronze. Unique piece.",
+    "img": "/img/products/collar-veronica-galainena.png",
+    "price": 100,
+    "featured": true,
+    "stock": true,
+    "visible": true
+  },
+  {
+    "id": 2,
+    "category": "necklaces",
+    "name": "collar 2",
+    "description": "Handmade link necklace with artisan pendant. Bronze. Unique piece.",
+    "img": "/img/products/collar-veronica-galainena.png",
+    "price": 120,
+    "featured": true,
+    "stock": false,
+    "visible": true
+  },
+  {
+    "id": 3,
+    "category": "necklaces",
+    "name": "collar 3",
+    "description": "Handmade link necklace with artisan pendant. Bronze. Unique piece.",
+    "img": "/img/products/collar-veronica-galainena.png",
+    "price": 130,
+    "featured": false,
+    "stock": true,
+    "visible": false
+  },
+  {
+    "id": 4,
+    "category": "necklaces",
+    "name": "collar 4",
+    "description": "Handmade link necklace with artisan pendant. Bronze. Unique piece.",
+    "img": "/img/products/collar-veronica-galainena.png",
+    "price": 140,
+    "featured": true,
+    "stock": false,
+    "visible": true
+  },
+  {
+    "id": 5,
+    "category": "necklaces",
+    "name": "collar 5",
+    "description": "Handmade link necklace with artisan pendant. Bronze. Unique piece.",
+    "img": "/img/products/collar-veronica-galainena.png",
+    "price": 150,
+    "featured": false,
+    "stock": true,
+    "visible": false
+  },
+  {
+    "id": 6,
+    "category": "necklaces",
+    "name": "collar 6",
+    "description": "Handmade link necklace with artisan pendant. Bronze. Unique piece.",
+    "img": "/img/products/collar-veronica-galainena.png",
+    "price": 160,
+    "featured": true,
+    "stock": true,
+    "visible": true
+  },
+  {
+    "id": 7,
+    "category": "earrings",
+    "name": "aro 1",
+    "description": "Silver earring with modern design. Handmade.",
+    "img": "/img/products/aros-galainena.png",
+    "price": 80,
+    "featured": true,
+    "stock": true,
+    "visible": true
+  },
+  {
+    "id": 8,
+    "category": "earrings",
+    "name": "aro 2",
+    "description": "Golden earring with stone details. Elegant and classic.",
+    "img": "/img/products/aros-galainena.png",
+    "price": 90,
+    "featured": false,
+    "stock": false,
+    "visible": false
+  },
+  {
+    "id": 9,
+    "category": "bracelets",
+    "name": "brazalete 1",
+    "description": "Leather bracelet with metal details. Adjustable.",
+    "img": "/img/products/brazalete-galainena.png",
+    "price": 70,
+    "featured": true,
+    "stock": true,
+    "visible": true
+  },
+  {
+    "id": 10,
+    "category": "bracelets",
+    "name": "brazalete 2",
+    "description": "Silver bracelet with personalized engraving.",
+    "img": "/img/products/brazalete-galainena.png",
+    "price": 110,
+    "featured": true,
+    "stock": false,
+    "visible": false
+  },
+  {
+    "id": 11,
+    "category": "rings",
+    "name": "anillo 1",
+    "description": "Gold ring with gemstone. Unique design.",
+    "img": "/img/products/anillo-galainena.jpg",
+    "price": 200,
+    "featured": false,
+    "stock": true,
+    "visible": true
+  },
+  {
+    "id": 12,
+    "category": "rings",
+    "name": "anillo 2",
+    "description": "Silver ring with vintage design. Ideal for special occasions.",
+    "img": "/img/products/anillo-galainena.jpg",
+    "price": 150,
+    "featured": true,
+    "stock": false,
+    "visible": true
+  }
+]

@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "name": "necklaces",
+      "spanishName": "collares",
+      "imgUrl": "/img/categoryMenu/collar-category.png"
+    },
+    {
+      "id": 2,
+      "name": "earrings",
+      "spanishName": "aros",
+      "imgUrl": "/img/categoryMenu/aro-category.png"
+    },
+    {
+      "id": 3,
+      "name": "bracelets",
+      "spanishName": "brazaletes",
+      "imgUrl": "/img/categoryMenu/brazalete-category.png"
+    },
+    {
+      "id": 4,
+      "name": "rings",
+      "spanishName": "anillos",
+      "imgUrl": "/img/categoryMenu/anillo-category.png"
+    }
+  ]
+  

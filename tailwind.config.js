@@ -8,7 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gold: '#FFD700', // Ajusta el valor del color dorado aquí
+        gold: '#d4af37', // Dorado clásico
+        darkGold: '#b8860b', // Dorado oscuro
+        bronze: '#cd7f32', // Bronce
+        brown: '#8b4513', // Marrón
+        lightBrown: '#a0522d', // Marrón claro
+        deepBrown: '#3e2723', // Marrón profundo // Ajusta el valor del color dorado aquí
       },
       keyframes: {
         fadeIn: {

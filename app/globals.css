@@ -5,3 +5,65 @@
 body{
     background-color: black;
 }
+
+/* Estilo personalizado del scrollbar */
+.scrollbar-custom::-webkit-scrollbar {
+    height: 3px; /* Hacer el scrollbar más fino */
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, transparent, #bea348, transparent); /* Gradiente dorado en el centro */
+    border-radius: 10px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, transparent, #cea231, transparent); /* Gradiente dorado más oscuro al hover */
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: transparent; /* Fondo transparente para el track */
+  }
+  
+  /* Para navegadores Firefox */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: #cfb359 transparent;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, transparent, #d4af37, transparent) !important;
+    border-radius: 10px !important;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, transparent, #b8860b, transparent) !important;
+  }
+
+/* CSS para animación continua */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-container {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+}
+
+.scroll-content {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll 70s linear infinite;
+  transition: transform 0.5s ease; /* Transición suave para el reinicio */
+}
+
+.scroll-container.pause-animation .scroll-content {
+  animation-play-state: paused; /* Detener la animación en hover o foco */
+}
