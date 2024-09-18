@@ -45,10 +45,12 @@ function FeaturedProducts() {
 
   return (
     <section className="w-full mx-auto bg-slate-50 py-8">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold">Destacados</h2>
-        <div className="inline-block w-24 h-1 bg-yellow-400 mt-2"></div>
-      </div>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-4 text-gray-800 inline-block relative">
+            Destacados
+            <span className="block w-8/12 h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-1/2 transform -translate-x-1/2 bottom-[-14px]"></span>
+            </h2>
+        </div>
       <div
         ref={containerRef}
         className={`scroll-container ${isInteracting ? 'pause-animation' : ''}`}
@@ -56,7 +58,7 @@ function FeaturedProducts() {
         <div className="scroll-content">
           {duplicatedProducts.length > 0 ? (
             duplicatedProducts.map((product) => (
-              <div key={product.uniqueKey} className="inline-block min-w-[250px]">
+              <div key={product.uniqueKey} className="inline-block min-w-[300px]">
                 <ProductCard product={product} />
               </div>
             ))

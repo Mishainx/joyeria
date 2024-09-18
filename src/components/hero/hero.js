@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative bg-gray-800 text-white h-screen">
+    <section className="relative bg-gray-800 text-white h-screen bottom-12">
       <div className="absolute inset-0">
         <Image
           src="/proximamente-veronica-galainena.jpg"
@@ -33,7 +33,7 @@ export default function Hero() {
   style={{ opacity: 0, animation: 'fadeIn 3s ease-out forwards', animationDelay: '1700ms' }}
 >
   <Link
-    href="#"
+    href="#catalogue"
     className="p-4 text-lg font-semibold text-gray-800 transition-colors duration-500 ease-in lg:hover:text-gray-600"
   >
     Catálogo

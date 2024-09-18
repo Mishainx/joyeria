@@ -10,6 +10,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  console.log(CategoryProvider)
+
   return (
     <html lang="en">
       <body>

@@ -29,11 +29,15 @@ export default function ProductList({ categories }) {
   }
 
   return (
-    <section className="bg-slate-50 py-12 px-6">
+    <section id="catalogue" className="bg-slate-50 py-12 px-6">
       <div className="container mx-auto">
-        <h2 className="text-5xl font-bold text-center mb-6 text-gray-800">
-          Catálogo
-        </h2>
+        <div className="text-center">
+          <h2 className="text-3xl font-bold mb-4 text-gray-800 inline-block relative">
+            Catálogo
+            <span className="block w-8/12 h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-1/2 transform -translate-x-1/2 bottom-[-14px]"></span>
+            </h2>
+        </div>
+
         <CategoryMenu
           onCategoryChange={handleCategoryChange}
           categories={categories}

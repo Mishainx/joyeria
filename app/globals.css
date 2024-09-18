@@ -46,6 +46,7 @@ body {
   position: relative;
   width: 100%;
   cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+  -webkit-overflow-scrolling: touch; /* Habilita el desplazamiento táctil */
 }
 
 .scroll-content {
@@ -54,6 +55,22 @@ body {
   animation: scroll 70s linear infinite;
   min-width: 200%; /* Doble del ancho visible para permitir un desplazamiento continuo */
   transition: transform 0.5s ease; /* Transición suave para el reinicio */
+}
+
+/* Ajustar velocidad de animación en móviles */
+@media (max-width: 768px) {
+  .scroll-content {
+    animation: scroll-mobile 30s linear infinite; /* Ajusta la duración de la animación para móviles */
+  }
+
+  @keyframes scroll-mobile {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
 }
 
 .scroll-container.pause-animation .scroll-content {

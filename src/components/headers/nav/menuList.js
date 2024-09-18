@@ -14,15 +14,20 @@ const MenuList = ({ open, handleClose, pages }) => {
         {/* Contenedor del MenuIcon con borde inferior */}
         <div 
           onClick={handleClose} 
-          className="absolute top-4 left-0 right-0 flex items-center p-4 "
+          className="absolute top-4 left-0 right-0 flex items-center p-4 cursor-pointer"
         >
-          <MenuIcon width={30} height={30} className="text-yellow-500 cursor-pointer" />
+          <MenuIcon width={30} height={30} className="text-yellow-500" />
         </div>
 
         {/* Enlaces de navegación */}
         <div className="flex-1 text-white flex flex-col items-center justify-start py-5 space-y-4 mt-16 w-full">
           {pages.map((page) => (
-            <Link key={page.path} href={page.path} className="w-full flex justify-between items-center border-s-2 border-yellow-500">
+            <Link 
+              key={page.path} 
+              href={page.path} 
+              className="w-full flex justify-between items-center border-s-2 border-yellow-500"
+              onClick={handleClose}  // Llama a handleClose cuando se hace clic en un enlace
+            >
               <div className="p-3 bg-opacity-90 text-start rounded-lg text-white font-semibold text-lg transition-transform transform active:scale-95">
                 {page.name}
               </div>
