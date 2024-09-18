@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { capitalizeFirstLetter } from "@/src/utils/stringsManager";
 
 export default function CategoryButton({ category, onSelect }) {
   return (
@@ -12,15 +13,15 @@ export default function CategoryButton({ category, onSelect }) {
         <div className="bg-white rounded-full flex items-center justify-center w-full h-full">
           <Image
             src={category.img}
-            width={60}
-            height={60}
+            width={80}
+            height={80}
             alt={category.title}
             className="rounded-full"
           />
         </div>
       </div>
-      <span className="text-xs font-light text-gray-600 mt-2 whitespace-nowrap">
-        {category.title}
+      <span className="text-base font-semibold text-gray-600 mt-2 whitespace-nowrap">
+        {capitalizeFirstLetter(category.title)}
       </span>
     </button>
   );

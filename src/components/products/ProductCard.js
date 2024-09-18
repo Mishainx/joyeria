@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
       {/* Información del producto */}
       <div className="w-full p-3 text-center">
         <h3 className="text-base font-semibold text-darkGold mb-1">{product.name}</h3>
-        <p className="text-xs font-semibold text-gray-900">$ {product.price.toLocaleString('es-ES')}</p>
+        <p className="text-base font-semibold text-gray-900">$ {product.price.toLocaleString('es-ES')}</p>
       </div>
     </div>
   );

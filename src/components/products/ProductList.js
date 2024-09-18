@@ -29,7 +29,7 @@ export default function ProductList({ categories }) {
   }
 
   return (
-    <section id="catalogue" className="bg-slate-50 py-12 px-6">
+    <section id="catalogue" className="bg-slate-50 py-12 px-6 scroll-mt-20">
       <div className="container mx-auto">
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-4 text-gray-800 inline-block relative">

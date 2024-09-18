@@ -59,9 +59,13 @@ body {
 
 /* Ajustar velocidad de animación en móviles */
 @media (max-width: 768px) {
+
+  
+  
   .scroll-content {
     animation: scroll-mobile 30s linear infinite; /* Ajusta la duración de la animación para móviles */
   }
+  
 
   @keyframes scroll-mobile {
     0% {
