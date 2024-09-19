@@ -1,6 +1,13 @@
 import Image from 'next/image';
 
+
+export const metadata = {
+  title: 'Mi taller',
+  description: 'Un breve recorrido por el proceso de creación de las piezas de joyería',
+}
+
 export default function WorkshopSection() {
+
   return (
     <section className="bg-gray-900 text-gray-100">
       {/* Hero Section */}

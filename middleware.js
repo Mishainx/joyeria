@@ -12,7 +12,7 @@ export async function middleware(request) {
   const cookie = cookieStore.get('vg-ct');
 
   if (!cookie) {
-    return NextResponse.redirect(new URL('/proximamente', request.url));
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
   // Verifica el token en la API
@@ -30,17 +30,14 @@ export async function middleware(request) {
       return NextResponse.next();
     } else {
       // Token no es válido o hay un error en la API
-      return NextResponse.redirect(new URL('/proximamente', request.url));
+      return NextResponse.redirect(new URL('/login', request.url));
     }
   } catch (error) {
     console.error('Error al verificar el token:', error);
-    return NextResponse.redirect(new URL('/proximamente', request.url));
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 }
 
 export const config = {
-  matcher: [
-    // Aplica a todas las rutas excepto `/login`
-    '/((?!login|proximamente|api).*)',
-  ],
+  matcher: ['/admin/:path*'], // Aplica solo a rutas bajo `/admin`
 };
