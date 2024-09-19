@@ -3,7 +3,7 @@ import DesktopNav from "./desktopNav";
 import MobileNav from "./mobileNav";
 
 const pages=[
-    {name:"Catálogo",path:"#catalogue",icon: <BraceletIcon width={20} height={20}/>},
+    {name:"Catálogo",path:"/#catalogue",icon: <BraceletIcon width={20} height={20}/>},
     {name:"Mi taller",path:"/taller"},
 ]
 

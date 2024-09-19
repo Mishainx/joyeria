@@ -5,6 +5,7 @@ import Header from "@/src/components/headers/header";
 import Footer from "@/src/components/footer/footer";
 import { ProductProvider } from "@/src/context/productContext";
 import { CategoryProvider } from "@/src/context/categoriesContext";
+import TopButton from "@/src/components/topbutton/TopButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default async function RootLayout({ children }) {
         <ProductProvider>
           <Header  />
             {children}
+            <TopButton/>
           <Footer />
         </ProductProvider>
       </CategoryProvider>
