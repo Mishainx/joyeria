@@ -36,13 +36,16 @@ export default function ProductCard({ product }) {
 <div className="w-full p-3 text-center">
   <h3 className="text-base font-semibold text-darkGold mb-1">{product.name}</h3>
   <Link href={`/product/${product.slug}`}>
-    <button className="text-xs text-slate-700 border-2 rounded-lg py-1 px-2 border-slate-300 
-                      transition-all duration-300 ease-in-out hover:bg-darkGold 
-                      hover:text-white hover:border-darkGold hover:shadow-md 
-                      focus:outline-none focus:ring-2 focus:ring-darkGold focus:ring-opacity-50">
-      Ver detalle
-    </button>
-  </Link>
+  <button className="text-xs text-white bg-darkGold border-2 border-darkGold rounded-lg py-1 px-2 
+                    transition-all duration-300 ease-in-out 
+                    shadow-md 
+                    focus:outline-none focus:ring-2 focus:ring-darkGold focus:ring-opacity-50 
+                    hover:bg-darkGold hover:text-white hover:border-darkGold 
+                    lg:bg-transparent lg:text-slate-800 lg:border-2 lg:border-slate-200
+                    lg:shadow-none lg:hover:bg-darkGold lg:hover:text-white lg:hover:border-darkGold lg:hover:shadow-md">
+    Ver detalle
+  </button>
+</Link>
 </div>
 
         {/* Modal */}
