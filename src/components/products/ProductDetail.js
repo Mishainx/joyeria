@@ -28,7 +28,7 @@ export const ProductDetail = ({ product }) => {
 
           {/* Div para centrar el botón solo en móviles */}
           <div className="flex justify-center md:justify-start w-full mt-6"> {/* Justificar en móvil */}
-          <Link href={`https://wa.me/5491161256858?text=Hola! quiero consultar por este producto: ${encodeURIComponent(product.name)}%0A${process.env.NEXT_PUBLIC_URL}/product/${product.slug}`}>
+          <Link href={`https://wa.me/5491161256858?text=Hola! quiero consultar por este producto: ${encodeURIComponent(product.name)}%0A${process.env.NEXT_PUBLIC_API_URL}/product/${product.slug}`}>
           <button className="flex gap-2 bg-gold text-white px-6 py-3 rounded-lg border-2 border-transparent hover:bg-darkGold hover:border-gold  transition-all duration-300 shadow-md hover:shadow-lg">
                 Comprar <WhatsappIcon />
             </button>
