@@ -20,7 +20,7 @@ export default function ProductCard({ product }) {
     <>
       <div className="relative flex flex-col items-center justify-center text-center w-[250px] flex-shrink-0 bg-white bg-opacity-60 backdrop-blur-md overflow-hidden duration-300 hover:shadow-xl">
         {/* Contenedor de la imagen con fondo gris */}
-        <div className="relative w-full aspect-square bg-gray-300 overflow-hidden">
+        <div className="relative w-full aspect-square bg-gray-300 overflow-hidden cursor-pointer">
           <Image
             src={product.img}
             fill={true}
@@ -30,37 +30,20 @@ export default function ProductCard({ product }) {
             onClick={() => handleImageClick(product.img)}
           />
 
-          {/* Descripción del producto en hover */}
-          <div className="hidden absolute inset-0 bg-black bg-opacity-50 backdrop-blur-lg lg:flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 space-y-5">
-            <p className="text-sm text-white text-center text-wrap">{product.description}</p>
-            <div className='flex space-x-4'>
-              {/* Icono de Eye con el onClick para abrir el popup */}
-              <div  onClick={() => handleImageClick(product.img)}  // Mueve el onClick aquí
-              >
-                              <EyeIcon
-                width="50"
-                height="50"
-                className="text-darkGold border-2 border-darkGold rounded-full p-2 cursor-pointer hover:text-yellow-500 hover:border-yellow-500 transition duration-500"
-              />
-
-              </div>
-              {/* Botón de WhatsApp */}
-              <Link target='blank' href={`https://api.whatsapp.com/send/?phone=5491161256858&text=Hola!+quiero+consultar+por+${product.name}+Cod:+${product.sku}`}>
-                <PhoneIcon
-                  width="50"
-                  height="50"
-                  className="text-darkGold border-2 border-darkGold rounded-full p-2 cursor-pointer hover:text-yellow-500 hover:border-yellow-500 transition duration-500"
-                />
-              </Link>
-            </div>
-          </div>
         </div>
 
-        {/* Información del producto */}
-        <div className="w-full p-3 text-center">
-          <h3 className="text-base font-semibold text-darkGold mb-1">{product.name}</h3>
-          <p className="text-base font-semibold text-gray-900">$ {product.price.toLocaleString('es-ES')}</p>
-        </div>
+{/* Información del producto */}
+<div className="w-full p-3 text-center">
+  <h3 className="text-base font-semibold text-darkGold mb-1">{product.name}</h3>
+  <Link href={`/product/${product.slug}`}>
+    <button className="text-xs text-slate-700 border-2 rounded-lg py-1 px-2 border-slate-300 
+                      transition-all duration-300 ease-in-out hover:bg-darkGold 
+                      hover:text-white hover:border-darkGold hover:shadow-md 
+                      focus:outline-none focus:ring-2 focus:ring-darkGold focus:ring-opacity-50">
+      Ver detalle
+    </button>
+  </Link>
+</div>
 
         {/* Modal */}
       </div>
