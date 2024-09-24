@@ -18,7 +18,7 @@ const FeaturedContainer = ({ featuredProducts }) => {
 
   const handleTouchStart = (e) => {
     containerRef.current.touchStartX = e.touches[0].clientX;
-    containerRef.current.isScrolling = false; // Indica si se está desplazando
+    containerRef.current.scrollLeftStart = containerRef.current.scrollLeft; // Guardar la posición inicial de scroll
   };
 
   const handleTouchMove = (e) => {
@@ -26,17 +26,9 @@ const FeaturedContainer = ({ featuredProducts }) => {
       const touchMoveX = e.touches[0].clientX;
       const difference = containerRef.current.touchStartX - touchMoveX;
 
-      // Solo desplazar si la diferencia es significativa
-      if (Math.abs(difference) > 10) {
-        containerRef.current.isScrolling = true; // Marca que se está desplazando
-        containerRef.current.scrollBy({
-          left: difference * 20, // Ajustar para que sea más suave
-          behavior: 'smooth',
-        });
 
-        // Actualiza la posición inicial para el siguiente movimiento
-        containerRef.current.touchStartX = touchMoveX;
-      }
+      // Aplicar el desplazamiento directamente
+      containerRef.current.scrollLeft = containerRef.current.scrollLeftStart + difference;
     }
   };
 
