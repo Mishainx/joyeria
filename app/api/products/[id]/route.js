@@ -45,8 +45,6 @@ export const PATCH = async (req, { params }) => {
       );
     }
 
-    console.log(formData)
-
     const updates = {};
     const name = formData.get('name');
     const category = formData.get('category');
@@ -66,8 +64,6 @@ export const PATCH = async (req, { params }) => {
     if (visible !== undefined) updates.visible = visible;
     if (stock !== undefined) updates.stock = stock;
 
-    console.log(updates)
-    console.log(file)
     // Subir la imagen a Firebase Storage si existe
     if (file && file.size > 0) { // Verificar si se ha seleccionado un archivo válido
       const storageRef = ref(storage, `ProductImg/${file.name}`);
