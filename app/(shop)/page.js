@@ -5,13 +5,12 @@ import CatalogueContainer from '@/src/components/products/CatalogueContainer';
 import { fetchProducts } from "@/src/utils/productManager";
 
 export default async function Home() {
-  const products = await fetchProducts()
 
   return (
     <main className="">
       <Hero/>
       <Gallery/>
-      <FeaturedProducts products={products}/>
+      <FeaturedProducts/>
       <CatalogueContainer/>
     </main>
   );
