@@ -27,11 +27,16 @@ export const ProductDetail = ({ product }) => {
           <p className="text-lightGray text-justify leading-relaxed">{capitalizeFirstLetter(product.description)}</p>
 
           {/* Div para centrar el botón solo en móviles */}
-          <div className="flex justify-center md:justify-start w-full mt-6"> {/* Justificar en móvil */}
-          <Link href={`https://wa.me/5491161256858?text=Hola! quiero consultar por este producto: ${encodeURIComponent(product.name)}%0A%0A${process.env.NEXT_PUBLIC_API_URL}/product/${product.slug}`}>
-          <button className="flex gap-2 bg-gold text-white px-6 py-3 rounded-lg border-2 border-transparent hover:bg-darkGold hover:border-gold  transition-all duration-300 shadow-md hover:shadow-lg">
+          <div className="flex flex-col md:flex-row justify-center md:justify-start w-full mt-6 space-y-2 md:space-y-0 md:space-x-4">
+            <Link href={`https://wa.me/5491161256858?text=Hola! quiero consultar por este producto: ${encodeURIComponent(product.name)}%0A%0A${process.env.NEXT_PUBLIC_API_URL}/product/${product.slug}`}>
+              <button className="flex  justify-center gap-2 bg-gold text-white w-full px-3 py-1.5 rounded-md border border-transparent hover:bg-darkGold transition-all duration-200 shadow-sm hover:shadow-md">
                 Comprar <WhatsappIcon />
-            </button>
+              </button>
+            </Link>
+            <Link href="/#catalogue">
+              <button className="flex justify-center gap-2 bg-gray-200 text-gray-800 w-full px-3 py-1.5 rounded-md border border-transparent hover:bg-gray-300 transition-all duration-200 shadow-sm hover:shadow-md">
+                Volver al catálogo
+              </button>
             </Link>
           </div>
         </div>
