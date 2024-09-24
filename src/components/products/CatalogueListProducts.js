@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import CategoryMenu from '../category/CategoryMenu';
 import ProductCard from './ProductCard';
-import { Suspense } from 'react';
 
 export default function CatalogueListProducts({ catalogueProducts, categories }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -28,12 +27,10 @@ export default function CatalogueListProducts({ catalogueProducts, categories })
             <span className="block w-8/12 h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-1/2 transform -translate-x-1/2 bottom-[-14px]"></span>
             </h2>
         </div>
-        <Suspense fallback={<p>cargando....</p>}>
           <CategoryMenu
             onCategoryChange={handleCategoryChange}
             categories={categories}
           />
-        </Suspense>
         <div className="flex flex-wrap gap-12 items-center justify-center">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (

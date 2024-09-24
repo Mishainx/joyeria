@@ -1,9 +1,8 @@
 import CategoryButton from './CategoryButton';
+import { useCategories } from '@/src/context/categoriesContext';
 
-export default async function CategoryMenu({ onCategoryChange }) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`,{cache:"force-cache"});
-    const data = await res.json();
-    const categories = data.payload
+export default function CategoryMenu({ onCategoryChange }) {
+  const categories = useCategories();
 
   return (
     <div className="text-center mb-8">
