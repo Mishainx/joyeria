@@ -10,23 +10,22 @@ function FeaturedProducts() {
   const { products, loading, error } = useProducts();
 
   // Para manejar el desplazamiento manual en dispositivos móviles
-  const touchStartX = useRef(0); // Para almacenar la posición inicial del touch
-  const scrollStart = useRef(0); // Para almacenar la posición de desplazamiento inicial
+  const touchStartX = useRef(0);
+  const scrollStart = useRef(0);
 
   useEffect(() => {
     const container = containerRef.current;
 
     if (!container) return;
 
-    // Controlar el deslizamiento con touch
     const handleTouchStart = (e) => {
-      touchStartX.current = e.touches[0].clientX; // Registrar la posición del primer toque
-      scrollStart.current = container.scrollLeft;  // Registrar la posición del scroll actual
+      touchStartX.current = e.touches[0].clientX; 
+      scrollStart.current = container.scrollLeft; 
     };
 
     const handleTouchMove = (e) => {
-      const touchDelta = e.touches[0].clientX - touchStartX.current; // Diferencia de posición del toque
-      container.scrollLeft = scrollStart.current - touchDelta; // Actualizar el scroll manualmente
+      const touchDelta = (e.touches[0].clientX - touchStartX.current) * 1.5; // Ajustar la sensibilidad
+      container.scrollLeft = scrollStart.current - touchDelta; 
     };
 
     container.addEventListener('touchstart', handleTouchStart);
@@ -42,7 +41,7 @@ function FeaturedProducts() {
     if (containerRef.current) {
       containerRef.current.scroll({
         left: containerRef.current.scrollLeft + scrollOffset,
-        behavior: 'smooth' // Desplazamiento suave
+        behavior: 'smooth' 
       });
     }
   };
@@ -76,18 +75,17 @@ function FeaturedProducts() {
           )}
         </div>
       </div>
-      {/* Botones de navegación a los costados */}
       <button
         onClick={() => scroll(-300)}
         className="hidden lg:block absolute left-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10 lg:left-8"
       >
-        <ArrowIcon width={20} height={20} className="rotate-180" /> {/* Flecha hacia la izquierda */}
+        <ArrowIcon width={20} height={20} className="rotate-180" />
       </button>
       <button
         onClick={() => scroll(300)}
         className="hidden lg:block absolute right-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10 lg:right-8"
       >
-        <ArrowIcon width={20} height={20} /> {/* Flecha hacia la derecha */}
+        <ArrowIcon width={20} height={20} />
       </button>
     </section>
   );

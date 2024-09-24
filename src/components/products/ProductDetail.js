@@ -23,7 +23,7 @@ export const ProductDetail = ({ product }) => {
         {/* Información del producto */}
         <div className="w-full md:w-1/2 flex flex-col justify-start items-start order-2 md:order-2">
           <h1 className="text-3xl font-bold text-gold mb-4">{capitalizeFirstLetter(product.name)}</h1>
-          <p className="text-2xl font-semibold text-lightGray mb-4">$ {product.price}</p>
+          <p className="text-2xl font-semibold text-lightGray mb-4">$ {new Intl.NumberFormat('es-AR').format(product.price)}</p>
           <p className="text-lightGray text-justify leading-relaxed">{capitalizeFirstLetter(product.description)}</p>
 
           {/* Div para centrar el botón solo en móviles */}
