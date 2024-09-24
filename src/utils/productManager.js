@@ -33,3 +33,27 @@ export const createProduct = async (productData) => {
     const fileUrl = await getDownloadURL(fileSnapshot.ref)
     return fileUrl
 }
+
+// Función para obtener el producto por slug
+export const fetchProductBySlug = async (slug) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/slug/${slug}`);
+  if (!response.ok) {
+    throw new Error('Producto no encontrado');
+  }
+  const data = await response.json();
+  return data.product; // Asegúrate de que el campo sea correcto
+};
+
+export const fetchProducts = async () => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`); // Ajusta la URL según sea necesario
+    if (!response.ok) throw new Error('Error al cargar productos');
+    const data = await response.json();
+    console.log("tutu")
+    console.log(data)
+    return data.payload || [];
+  } catch (error) {
+    console.error('Error al obtener productos:', error);
+    return [];
+  }
+};

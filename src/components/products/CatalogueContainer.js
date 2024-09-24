@@ -1,8 +1,8 @@
 // src/components/FeaturedProducts.jsx
 import { fetchProducts } from '@/src/utils/productManager';
-import FeaturedContainer from './FeaturedContainer';
+import CatalogueListProducts from './CatalogueListProducts';
 
-export default async function FeaturedProducts() {
+export default async function CatalogueContainer({categories}) {
   let products = [];
 
   try {
@@ -14,6 +14,6 @@ export default async function FeaturedProducts() {
   const featuredProducts = products.filter((product) => product.featured) || [];
 
   return (
-    <FeaturedContainer featuredProducts={featuredProducts} />
-  );
+    <CatalogueListProducts catalogueProducts={products}/>
+);
 }

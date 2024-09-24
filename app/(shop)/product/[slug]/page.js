@@ -1,19 +1,10 @@
 import ProductContainer from "@/src/components/products/ProductDetailContainer";
 import { capitalizeFirstLetter } from "@/src/utils/stringsManager";
-
-// Función para obtener el producto por slug
-const fetchProductBySlug = async (slug) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/slug/${slug}`);
-  if (!response.ok) {
-    throw new Error('Producto no encontrado');
-  }
-  const data = await response.json();
-  return data.product; // Asegúrate de que el campo sea correcto
-};
+import { fetchProductBySlug } from "@/src/utils/productManager";
 
 export async function generateMetadata({ params }) {
-  const product = await fetchProductBySlug(params.slug); // Obtener el producto por slug
-
+  const product = await fetchProductBySlug(params.slug);
+  
   return {
     title: `${capitalizeFirstLetter(product.name)} - Verónica Galainena Joyería`, // Título
     description: product.description, // Descripción
