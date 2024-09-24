@@ -18,6 +18,7 @@ const FeaturedContainer = ({ featuredProducts }) => {
 
   const handleTouchStart = (e) => {
     containerRef.current.touchStartX = e.touches[0].clientX;
+    containerRef.current.isScrolling = false; // Indica si se está desplazando
   };
 
   const handleTouchMove = (e) => {
@@ -25,12 +26,17 @@ const FeaturedContainer = ({ featuredProducts }) => {
       const touchMoveX = e.touches[0].clientX;
       const difference = containerRef.current.touchStartX - touchMoveX;
 
-      containerRef.current.scrollBy({
-        left: difference * 25, // Aumentar el multiplicador para un desplazamiento más perceptible
-        behavior: 'smooth',
-      });
+      // Solo desplazar si la diferencia es significativa
+      if (Math.abs(difference) > 10) {
+        containerRef.current.isScrolling = true; // Marca que se está desplazando
+        containerRef.current.scrollBy({
+          left: difference * 20, // Ajustar para que sea más suave
+          behavior: 'smooth',
+        });
 
-      containerRef.current.touchStartX = touchMoveX;
+        // Actualiza la posición inicial para el siguiente movimiento
+        containerRef.current.touchStartX = touchMoveX;
+      }
     }
   };
 
@@ -60,16 +66,16 @@ const FeaturedContainer = ({ featuredProducts }) => {
           )}
         </div>
       </div>
-      {/* Los botones ahora también están visibles en móviles */}
+      {/* Botones ocultos en móviles */}
       <button
         onClick={() => scroll(-600)} // Aumentar el scrollOffset para desplazamiento más rápido
-        className="block absolute left-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10"
+        className="hidden absolute left-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10 lg:block"
       >
         <ArrowIcon width={20} height={20} className="rotate-180" />
       </button>
       <button
         onClick={() => scroll(600)} // Aumentar el scrollOffset para desplazamiento más rápido
-        className="block absolute right-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10"
+        className="hidden absolute right-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10 lg:block"
       >
         <ArrowIcon width={20} height={20} />
       </button>
