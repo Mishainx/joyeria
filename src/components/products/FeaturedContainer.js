@@ -3,16 +3,34 @@
 import { useRef } from 'react';
 import ProductCard from './ProductCard';
 import ArrowIcon from '@/src/icons/ArrowIcon';
-import FeaturedProducts from './FeaturedProducts';
 
 const FeaturedContainer = ({ featuredProducts }) => {
-  const containerRef = useRef(null); // Definir la referencia aquí
+  const containerRef = useRef(null);
+
   const scroll = (scrollOffset) => {
     if (containerRef.current) {
-      containerRef.current.scroll({
-        left: containerRef.current.scrollLeft + scrollOffset,
+      containerRef.current.scrollBy({
+        left: scrollOffset,
         behavior: 'smooth',
       });
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    containerRef.current.touchStartX = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    if (containerRef.current) {
+      const touchMoveX = e.touches[0].clientX;
+      const difference = containerRef.current.touchStartX - touchMoveX;
+
+      containerRef.current.scrollBy({
+        left: difference * 25, // Aumentar el multiplicador para un desplazamiento más perceptible
+        behavior: 'smooth',
+      });
+
+      containerRef.current.touchStartX = touchMoveX;
     }
   };
 
@@ -25,7 +43,9 @@ const FeaturedContainer = ({ featuredProducts }) => {
         </h2>
       </div>
       <div
-        ref={containerRef} // Añadir la referencia aquí
+        ref={containerRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
         className="scroll-container scrollbar-custom p-5 flex space-x-4 overflow-x-auto lg:overflow-hidden lg:px-8"
       >
         <div className="flex space-x-4">
@@ -40,15 +60,16 @@ const FeaturedContainer = ({ featuredProducts }) => {
           )}
         </div>
       </div>
+      {/* Los botones ahora también están visibles en móviles */}
       <button
-        onClick={() => scroll(-300)}
-        className="hidden lg:block absolute left-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10 lg:left-8"
+        onClick={() => scroll(-600)} // Aumentar el scrollOffset para desplazamiento más rápido
+        className="block absolute left-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10"
       >
         <ArrowIcon width={20} height={20} className="rotate-180" />
       </button>
       <button
-        onClick={() => scroll(300)}
-        className="hidden lg:block absolute right-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10 lg:right-8"
+        onClick={() => scroll(600)} // Aumentar el scrollOffset para desplazamiento más rápido
+        className="block absolute right-4 top-1/2 transform -translate-y-1/2 bg-darkGold text-white p-2 rounded-full shadow-lg z-10"
       >
         <ArrowIcon width={20} height={20} />
       </button>

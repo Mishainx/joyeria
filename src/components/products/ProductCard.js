@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import Image from "next/image";
-import EyeIcon from "@/src/icons/EyeIcon";
 import ImagePopup from '../gallery/ImagePopup';
-import PhoneIcon from '@/src/icons/PhoneIcon';
 import Link from 'next/link';
 
 export default function ProductCard({ product }) {

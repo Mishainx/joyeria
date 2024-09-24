@@ -1,10 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import Loader from '../Loader/Loader';
+import { createPortal } from 'react-dom'; 
+import Spinner from '../spinner/spinner';// Next.js soporta React Portals
 
 const ImagePopup = ({ src, onClose }) => {
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(true); // Estado de carga de la imagen
 
   useEffect(() => {
     setShow(true);
@@ -15,7 +17,7 @@ const ImagePopup = ({ src, onClose }) => {
     setTimeout(onClose, 200); // Espera a que la transición se complete antes de cerrar
   };
 
-  return ReactDOM.createPortal(
+  return createPortal(
     <div
       className={`fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300 ${show ? 'opacity-100' : 'opacity-0'}`}
       onClick={handleClose} // Cierra el popup al hacer clic en el fondo
@@ -29,12 +31,21 @@ const ImagePopup = ({ src, onClose }) => {
         >
           &times;
         </button>
+
         <div className="relative w-10/12 sm:w-full h-full p-4 md:p-0">
+          {/* Muestra tu propio Loader mientras la imagen está cargando */}
+          {loading && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Spinner/> {/* Usa tu componente Loader aquí */}
+            </div>
+          )}
+
           <Image
             src={src}
             alt="Enlarged view"
             fill={true}
-            className="shadow-lg rounded-lg object-contain"
+            className={`shadow-lg rounded-lg object-contain transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'}`} // Transición para mostrar la imagen cuando esté lista
+            onLoadingComplete={() => setLoading(false)} // Cambia el estado cuando la imagen se carga
           />
         </div>
       </div>
@@ -44,3 +55,4 @@ const ImagePopup = ({ src, onClose }) => {
 };
 
 export default ImagePopup;
+
