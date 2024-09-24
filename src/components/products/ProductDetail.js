@@ -30,7 +30,7 @@ export const ProductDetail = ({ product }) => {
           <div className="flex flex-col md:flex-row justify-center md:justify-start w-full mt-6 space-y-2 md:space-y-0 md:space-x-4">
             <Link href={`https://wa.me/5491161256858?text=Hola! quiero consultar por este producto: ${encodeURIComponent(product.name)}%0A%0A${process.env.NEXT_PUBLIC_API_URL}/product/${product.slug}`}>
               <button className="flex  justify-center gap-2 bg-gold text-white w-full px-3 py-1.5 rounded-md border border-transparent hover:bg-darkGold transition-all duration-200 shadow-sm hover:shadow-md">
-                Comprar <WhatsappIcon />
+                Consultar <WhatsappIcon />
               </button>
             </Link>
             <Link href="/#catalogue">
