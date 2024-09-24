@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Loader from '../Loader/Loader';
 import { createPortal } from 'react-dom'; 
-import Spinner from '../spinner/spinner';// Next.js soporta React Portals
+import Spinner from '../Loader/Spinner';
 
 const ImagePopup = ({ src, onClose }) => {
   const [show, setShow] = useState(false);
