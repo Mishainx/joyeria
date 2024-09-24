@@ -6,7 +6,7 @@ export default function Hero() {
     <section className="relative bg-gray-800 text-white h-screen bottom-12">
       <div className="absolute inset-0">
         <Image
-          src="/proximamente-veronica-galainena.jpg"
+          src="/img/hero/hero-veronica-galainena-joyeria.jpeg"
           alt="Hero Background"
           className="w-full h-full object-cover"
           fill
