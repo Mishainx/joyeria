@@ -46,7 +46,7 @@ export const fetchProductBySlug = async (slug) => {
 
 export const fetchProducts = async () => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`); // Ajusta la URL según sea necesario
+    const response = await fetch(`https://www.veronicagalainena.com.ar/api/products`); // Ajusta la URL según sea necesario
     console.log("acá")
     
     if (!response.ok){
