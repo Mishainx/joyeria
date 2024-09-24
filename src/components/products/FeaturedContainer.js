@@ -7,7 +7,6 @@ import FeaturedProducts from './FeaturedProducts';
 
 const FeaturedContainer = ({ featuredProducts }) => {
   const containerRef = useRef(null); // Definir la referencia aquí
-  console.log(FeaturedProducts)
   const scroll = (scrollOffset) => {
     if (containerRef.current) {
       containerRef.current.scroll({
