@@ -47,10 +47,16 @@ export const fetchProductBySlug = async (slug) => {
 export const fetchProducts = async () => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`); // Ajusta la URL según sea necesario
-    if (!response.ok) throw new Error('Error al cargar productos');
+    console.log("acá")
+    
+    if (!response.ok){
+      throw new Error('Error al cargar productos');
+    } 
     const data = await response.json();
+    console.log("allá")
     return data.payload || [];
   } catch (error) {
+    console.log("aqui")
     console.error('Error al obtener productos:', error);
     return [];
   }

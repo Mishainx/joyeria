@@ -6,7 +6,7 @@ import { fetchProducts } from "@/src/utils/productManager";
 
 export default async function Home() {
   const products = await fetchProducts()
-  console.log(products)
+  console.log("tutu")
 
   return (
     <main className="">
