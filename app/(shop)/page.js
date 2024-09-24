@@ -12,7 +12,7 @@ export default async function Home() {
       <Hero/>
       <Gallery/>
       <FeaturedProducts products={products}/>
-     { /*<CatalogueContainer/>*/}
+      <CatalogueContainer/>
     </main>
   );
 }
