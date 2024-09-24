@@ -47,7 +47,6 @@ export const fetchProductBySlug = async (slug) => {
 export const fetchProducts = async () => {
   try {
     const response = await fetch(`https://www.veronicagalainena.com.ar/api/products`); // Ajusta la URL según sea necesario
-    console.log("acá")
     
     if (!response.ok){
       throw new Error('Error al cargar productos');
