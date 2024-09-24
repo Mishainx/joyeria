@@ -46,16 +46,15 @@ export const fetchProductBySlug = async (slug) => {
 
 export const fetchProducts = async () => {
   try {
-    const response = await fetch(`https://www.veronicagalainena.com.ar/api/products`); // Ajusta la URL según sea necesario
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {cache:"no-store"}); // Ajusta la URL según sea necesario
     
     if (!response.ok){
       throw new Error('Error al cargar productos');
     } 
     const data = await response.json();
-    console.log("allá")
+    console.log(data.payload)
     return data.payload || [];
   } catch (error) {
-    console.log("aqui")
     console.error('Error al obtener productos:', error);
     return [];
   }
