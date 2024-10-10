@@ -36,7 +36,7 @@ export const createProduct = async (productData) => {
 
 // Función para obtener el producto por slug
 export const fetchProductBySlug = async (slug) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/slug/${slug}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/slug/${slug}`, {cache:"no-store"});
   if (!response.ok) {
     throw new Error('Producto no encontrado');
   }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Image from "next/image";
 import ImagePopup from '../gallery/ImagePopup';
 import Link from 'next/link';
+import { capitalizeFirstLetter } from '@/src/utils/stringsManager';
 
 export default function ProductCard({ product }) {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -22,7 +23,7 @@ export default function ProductCard({ product }) {
           <Image
             src={product.img}
             fill={true}
-            alt={product.name}
+            alt={capitalizeFirstLetter(product.name)}
             className="object-cover transition-transform duration-300 ease-in-out"
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
             onClick={() => handleImageClick(product.img)}
@@ -32,7 +33,7 @@ export default function ProductCard({ product }) {
 
 {/* Información del producto */}
 <div className="w-full p-3 text-center">
-  <h3 className="text-base font-semibold text-darkGold mb-1">{product.name}</h3>
+  <h3 className="text-base font-semibold text-darkGold mb-1">{capitalizeFirstLetter(product.name)}</h3>
   <Link href={`/product/${product.slug}`}>
   <button className="text-xs text-white bg-darkGold border-2 border-darkGold rounded-lg py-1 px-2 
                     transition-all duration-300 ease-in-out 
