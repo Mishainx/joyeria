@@ -4,6 +4,8 @@ import WhatsappIcon from '@/src/icons/WhatsappIcon';
 import Link from 'next/link';
 
 export const ProductDetail = ({ product }) => {
+  console.log(product)
+
   return (
     <div className="container mx-auto p-6">
       {/* Contenedor principal responsivo */}
