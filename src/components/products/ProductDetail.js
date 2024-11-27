@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { capitalizeFirstLetter } from "@/src/utils/stringsManager";
+import { capitalizeAllWords, capitalizeFirstLetter } from "@/src/utils/stringsManager";
 import WhatsappIcon from '@/src/icons/WhatsappIcon';
 import Link from 'next/link';
 
@@ -24,7 +24,7 @@ export const ProductDetail = ({ product }) => {
 
         {/* Información del producto */}
         <div className="w-full md:w-1/2 flex flex-col justify-start items-start order-2 md:order-2">
-          <h1 className="text-3xl font-bold text-gold mb-4">{capitalizeFirstLetter(product.name)}</h1>
+          <h1 className="text-3xl font-bold text-gold mb-4">{capitalizeAllWords(product.name)}</h1>
           <p className="text-2xl font-semibold text-lightGray mb-4 whitespace-nowrap">$ {new Intl.NumberFormat('es-AR').format(product.price)}</p>
           <p className="text-lightGray text-justify leading-relaxed">{capitalizeFirstLetter(product.description)}</p>
 
