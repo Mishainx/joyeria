@@ -46,31 +46,32 @@ export const PATCH = async (req, { params }) => {
       );
     }
 
+    const currentData = productDoc.data(); // Obtenemos los datos actuales del producto
     const updates = {};
+    
     const name = formData.get('name');
     const category = formData.get('category');
     const price = formData.get('price');
     const description = formData.get('description');
-    const featured = formData.get('featured') === 'true';
-    const visible = formData.get('visible') === 'true';
-    const stock = formData.get('stock') === 'true';
+    const featured = formData.get('featured');
+    const visible = formData.get('visible');
+    const stock = formData.get('stock');
     const file = formData.get('thumbnail');
 
-    // Solo añadir al objeto de actualizaciones si existe el campo
-    if (name) {
+    // Actualizamos solo los campos que han cambiado
+    if (name && name !== currentData.name) {
       updates.name = name;
 
       // Generar y añadir el nuevo slug solo si el nombre cambia
       const newSlug = await generateUniqueSlug(name);
       updates.slug = newSlug;
     }
-
-    if (category) updates.category = category;
-    if (price) updates.price = parseFloat(price);
-    if (description) updates.description = description;
-    if (featured !== undefined) updates.featured = featured;
-    if (visible !== undefined) updates.visible = visible;
-    if (stock !== undefined) updates.stock = stock;
+    if (category && category !== currentData.category) updates.category = category;
+    if (price && parseFloat(price) !== currentData.price) updates.price = parseFloat(price);
+    if (description && description !== currentData.description) updates.description = description;
+    if (featured !== null && featured !== undefined) updates.featured = featured === 'true'; // Convertir a booleano
+    if (visible !== null && visible !== undefined) updates.visible = visible === 'true'; // Convertir a booleano
+    if (stock !== null && stock !== undefined) updates.stock = stock === 'true'; // Convertir a booleano
 
     // Subir la imagen a Firebase Storage si existe
     if (file && file.size > 0) { // Verificar si se ha seleccionado un archivo válido
@@ -78,6 +79,14 @@ export const PATCH = async (req, { params }) => {
       await uploadBytes(storageRef, file);
       const img = await getDownloadURL(storageRef);
       updates.img = img; // Añadir la URL de la imagen a las actualizaciones
+    }
+
+    // Si no hay cambios, devolvemos una respuesta indicando que no se realizaron actualizaciones
+    if (Object.keys(updates).length === 0) {
+      return NextResponse.json(
+        { message: 'No changes detected' },
+        { status: 400 }
+      );
     }
 
     console.log(updates);
@@ -98,6 +107,7 @@ export const PATCH = async (req, { params }) => {
     );
   }
 };
+
 
 export const DELETE = async (req, { params }) => {
   const { id } = params;
