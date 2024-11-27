@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/src/firebase/config';
-import { doc, deleteDoc,getDoc, updateDoc } from 'firebase/firestore';
+import { doc, deleteDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '@/src/firebase/config';
+import { generateUniqueSlug } from '@/src/utils/createSlug'; // Asegúrate de tener esta función disponible
 
 export const GET = async (req, { params }) => {
   const { id } = params;
@@ -56,7 +57,14 @@ export const PATCH = async (req, { params }) => {
     const file = formData.get('thumbnail');
 
     // Solo añadir al objeto de actualizaciones si existe el campo
-    if (name) updates.name = name;
+    if (name) {
+      updates.name = name;
+
+      // Generar y añadir el nuevo slug solo si el nombre cambia
+      const newSlug = await generateUniqueSlug(name);
+      updates.slug = newSlug;
+    }
+
     if (category) updates.category = category;
     if (price) updates.price = parseFloat(price);
     if (description) updates.description = description;
@@ -71,7 +79,9 @@ export const PATCH = async (req, { params }) => {
       const img = await getDownloadURL(storageRef);
       updates.img = img; // Añadir la URL de la imagen a las actualizaciones
     }
-    console.log(updates)
+
+    console.log(updates);
+
     // Actualizar el documento en Firestore
     await updateDoc(doc(db, 'products', id), updates);
 
@@ -80,7 +90,7 @@ export const PATCH = async (req, { params }) => {
       { status: 200 }
     );
   } catch (error) {
-    console.log(error)
+    console.log(error);
 
     return NextResponse.json(
       { message: 'Error updating product', error: error.message },
