@@ -13,7 +13,7 @@ const ProductDashboardMobile = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [editingProductId, setEditingProductId] = useState(null);
   const { products, loading, error } = useProducts();
-  const categories = useCategories();
+  const {categories} = useCategories();
 
   // Filtrar los productos según la búsqueda y categoría seleccionada
   const filteredProducts = products?.payload?.filter((product) => {

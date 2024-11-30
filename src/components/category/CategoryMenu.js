@@ -2,7 +2,7 @@ import CategoryButton from './CategoryButton';
 import { useCategories } from '@/src/context/categoriesContext';
 
 export default function CategoryMenu({ onCategoryChange }) {
-  const categories = useCategories();
+  const {categories} = useCategories();
 
   return (
     <div className="text-center mb-8">

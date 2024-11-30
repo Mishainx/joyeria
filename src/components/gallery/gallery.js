@@ -4,20 +4,22 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link"; // Importa el componente Link
 import ImagePopup from "./ImagePopup";
+import { useCategories } from "@/src/context/categoriesContext";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const { updateCatalogueCategory } = useCategories();  // Accede a la función para actualizar la categoría seleccionada
   const images = [
-    { name: "Anillo Nose1", src: "/img/gallery/imagen-1.jpeg", link:"/product/anillo-nose1" },
-    { name: "Brazalete Simple", src: "/img/gallery/imagen-2.jpeg", link:"/product/brazalete-simple" },
-    { name: "Brazalete Amorfa", src: "/img/gallery/imagen-3.jpeg", link:"/product/brazalete-amorfa"},
-    { name: "Collar Simple", src: "/img/gallery/imagen-4.jpeg", link: "/product/collar-simple" },
-    { name: "brazalete-sintonía", src: "/img/gallery/imagen-5.jpeg", link:"/product/brazalete-sintonia" },
-    { name: "Anillo Luz", src: "/img/gallery/imagen-6.jpeg", link:"/product/anillo-luz1" },
+    { name: "Anillos", src: "/img/gallery/imagen-1.jpeg", link:"#catalogue", category: "00001" },
+    { name: "Brazaletes", src: "/img/gallery/imagen-2.jpeg", link:"#catalogue", category: "00004" },
+    { name: "Aros", src: "/img/gallery/aros-joyeria-veronica-galainena.jpeg", link:"#catalogue", category: "00003" },
+    { name: "Collares", src: "/img/gallery/imagen-4.jpeg", link:"#catalogue", category: "00002" },
+    { name: "Todos", src: "/img/gallery/imagen-5.jpeg", link:"#catalogue", category: "all" },
+    { name: "Anillos", src: "/img/gallery/imagen-6.jpeg", link:"#catalogue", category: "00001" },
   ];
 
-  const handleImageClick = (src) => {
-    setSelectedImage(src);
+  const handleImageClick = (src, category) => {
+    updateCatalogueCategory(category); // Actualiza la categoría seleccionada en el catálogo
   };
 
   const handleClosePopup = () => {
@@ -34,7 +36,7 @@ const Gallery = () => {
               <div
                 key={index}
                 className="relative overflow-hidden rounded-lg bg-gray-200 aspect-square group cursor-pointer"
-                onClick={() => !image.link && handleImageClick(image.src)}
+                onClick={() => handleImageClick(image.src, image.category)} // Actualiza la categoría cuando se haga clic
               >
                 <Image
                   src={image.src}

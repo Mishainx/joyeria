@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateProductForm = ({setView}) => {
-  const categories = useCategories();
+  const {categories} = useCategories();
   const {fetchProducts} = useProducts()
   const router = useRouter();
   const [errors, setErrors] = useState({});

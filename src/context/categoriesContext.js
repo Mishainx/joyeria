@@ -11,6 +11,8 @@ export function useCategories() {
 
 export function CategoryProvider({ children }) {
   const [categories, setCategories] = useState([]);
+  const [catalogueCategory, setCatalogueCategory] = useState(null);  // Estado para la categoría del catálogo
+
   
   useEffect(() => {
     const fetchCategories = async () => {
@@ -32,8 +34,13 @@ export function CategoryProvider({ children }) {
   useEffect(() => {
   }, [categories]);
 
+    // Función para actualizar la categoría seleccionada en el catálogo
+  const updateCatalogueCategory = (category) => {
+    setCatalogueCategory(category);
+  };
+
   return (
-    <CategoryContext.Provider value={ categories }>
+    <CategoryContext.Provider value={{ categories, catalogueCategory, updateCatalogueCategory }  }>
       {children}
     </CategoryContext.Provider>
   );
