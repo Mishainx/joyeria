@@ -11,28 +11,30 @@ export default function WorkshopSection() {
   return (
 <section className="bg-black text-gray-100">
   {/* Hero Section */}
-  <div className="relative h-screen w-full">
-    {/* Imagen completa */}
-    <div className="relative w-full h-[90%]">
-      <Image
-        src="/img/taller/veronica-galainena-joyeria-foto-taller.jpeg"
-        alt="Verónica Galainena foto taller de joyería"
-        layout="fill"
-        objectFit="cover"
-        className="opacity-95"
-      />
-      {/* Sombra ligera debajo */}
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-    </div>
-
-    {/* Contenido del texto */}
-    <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 py-8 bg-black/30">
-      <h1 className="text-3xl sm:text-5xl font-bold text-gold mb-4">El taller</h1>
-      <h2 className="text-lg sm:text-2xl font-medium text-white">
-        Piezas con alma creadas en el corazón de nuestro taller artesanal.
-      </h2>
-    </div>
+  <div className="relative w-full">
+  {/* Imagen completa */}
+  <div className="relative w-full h-[50vh] sm:h-screen">
+    <Image
+      src="/img/taller/veronica-galainena-joyeria-foto-taller.jpeg"
+      alt="Verónica Galainena foto taller de joyería"
+      layout="fill"
+      objectFit="cover"
+      className="opacity-95"
+    />
+    {/* Sombra ligera en la parte inferior */}
+    <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
   </div>
+
+  {/* Contenido del texto */}
+  <div className="bg-black px-6 py-8 text-center sm:absolute sm:inset-0 sm:flex sm:flex-col sm:justify-center sm:items-center sm:bg-black/30">
+    <h1 className="text-3xl sm:text-5xl font-bold text-gold mb-4">El taller</h1>
+    <h2 className="text-lg sm:text-2xl font-medium text-white">
+      Piezas con alma creadas en el corazón de nuestro taller artesanal.
+    </h2>
+  </div>
+</div>
+
+
 
   {/* Cards Section */}
   <div className="max-w-7xl mx-auto py-16 px-4 sm:px-8 lg:px-16 bg-black">
