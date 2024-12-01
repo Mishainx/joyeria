@@ -13,13 +13,13 @@ export default function WorkshopSection() {
       {/* Hero Section */}
       <div className="relative h-screen w-full bg-gray-800">
         <Image
-          src="/img/taller/workshop.webp"
-          alt="Jewelry Workshop Hero"
+          src="/img/taller/veronica-galainena-joyeria-foto-taller.jpeg"
+          alt="Verónica Galainena foto taller de joyería"
           layout="fill"
           objectFit="cover"
           className="opacity-50"
         />
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 -top-10">
           <h1 className="text-5xl font-bold text-gold">El taller</h1>
           <h2 className='text-2xl font-bold'>
             Piezas con alma creadas en el corazón de nuestro taller artesanal.
