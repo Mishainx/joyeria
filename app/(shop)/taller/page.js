@@ -43,11 +43,11 @@ export default function WorkshopSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="flex items-center">
           <div className="text-lg text-gray-300 leading-relaxed">
-            <div className="relative mb-2 inline-block">
+            <div className="relative mb-6 inline-block">
               <h3 className="text-2xl font-semibold text-gold">Inspirado en lo natural</h3>
               <span className="block h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-0 bottom-[-8px] w-full"></span>
             </div>
-            <p>
+            <p className='leading-normal'>
             Nos inspiramos en las formas, texturas y colores que encontramos en la naturaleza. Desde las suaves curvas de una hoja hasta el brillo de una gota de rocío, cada elemento nos motiva a crear. Observamos cómo la luz interactúa con las piedras y los metales, y nos esforzamos por reflejar esa esencia en nuestros diseños.
             </p>
           </div>
@@ -74,11 +74,11 @@ export default function WorkshopSection() {
         </div>
         <div className="flex items-center order-1 md:order-2">
           <div className="text-lg text-gray-300 leading-relaxed">
-            <div className="relative mb-2 inline-block">
+            <div className="relative mb-6 inline-block">
               <h3 className="text-2xl font-semibold text-gold">Una historia en cada pieza</h3>
               <span className="block h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-0 bottom-[-8px] w-full"></span>
             </div>
-            <p>
+            <p className='leading-normal'>
             Al elegir una de nuestras piezas, no solo llevas un accesorio, sino un fragmento de la vida y la pasión de quienes la elaboraron. Cada detalle, cada forma y cada brillo cuentan una historia que conecta a quien la lleva con la profundidad de su creación, convirtiendo la joyería en un testimonio tangible de momentos y significados que trascienden el tiempo.
             </p>
           </div>
@@ -89,11 +89,11 @@ export default function WorkshopSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="flex items-center">
           <div className="text-lg text-gray-300 leading-relaxed">
-            <div className="relative mb-2 inline-block">
+            <div className="relative mb-6 inline-block">
               <h3 className="text-2xl font-semibold text-gold">El proceso</h3>
               <span className="block h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-0 bottom-[-8px] w-full"></span>
             </div>
-            <p>
+            <p className='leading-normal'>
             La creación de nuestras joyas es un viaje que exige dedicación y precisión en cada etapa. Comenzamos seleccionando meticulosamente los mejores materiales, desde metales de alta calidad hasta piedras preciosas, asegurándonos de que cada elemento cumpla con nuestros estándares de excelencia para que cada pieza sea única.
             </p>
           </div>
