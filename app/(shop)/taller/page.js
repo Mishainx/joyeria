@@ -12,20 +12,29 @@ export default function WorkshopSection() {
     <section className="bg-gray-900 text-gray-100">
       {/* Hero Section */}
       <div className="relative h-screen w-full bg-gray-800">
-        <Image
-          src="/img/taller/veronica-galainena-joyeria-foto-taller.jpeg"
-          alt="Verónica Galainena foto taller de joyería"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-50"
-        />
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 -top-10">
-          <h1 className="text-5xl font-bold text-gold">El taller</h1>
-          <h2 className='text-2xl font-bold'>
-            Piezas con alma creadas en el corazón de nuestro taller artesanal.
-          </h2>
-        </div>
-      </div>
+  {/* Imagen cuadrada para mobile */}
+  <div className="relative w-full h-1/2 sm:h-[60%]">
+    <Image
+      src="/img/taller/veronica-galainena-joyeria-foto-taller.jpeg"
+      alt="Verónica Galainena foto taller de joyería"
+      layout="fill"
+      objectFit="cover"
+      className="opacity-80"
+    />
+    {/* Sombra negra en el límite inferior */}
+    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black to-transparent"></div>
+  </div>
+
+  {/* Contenido del texto */}
+  <div className="relative flex flex-col justify-center items-center text-center px-6 py-8 bg-gray-900 sm:bg-transparent sm:py-12">
+    <h1 className="text-3xl sm:text-5xl font-bold text-gold mb-4">El taller</h1>
+    <h2 className="text-lg sm:text-2xl font-medium text-white">
+      Piezas con alma creadas en el corazón de nuestro taller artesanal.
+    </h2>
+  </div>
+</div>
+
+
 
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-8 lg:px-16">
         {/* Process Cards */}
