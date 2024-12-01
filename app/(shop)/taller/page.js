@@ -46,7 +46,7 @@ export default function WorkshopSection() {
               <span className="block h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-0 bottom-[-8px] w-full"></span>
             </div>
             <p>
-              Nos inspiramos en las formas, texturas y colores que encontramos en la naturaleza...
+            Nos inspiramos en las formas, texturas y colores que encontramos en la naturaleza. Desde las suaves curvas de una hoja hasta el brillo de una gota de rocío, cada elemento nos motiva a crear. Observamos cómo la luz interactúa con las piedras y los metales, y nos esforzamos por reflejar esa esencia en nuestros diseños.
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function WorkshopSection() {
               <span className="block h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-0 bottom-[-8px] w-full"></span>
             </div>
             <p>
-              Al elegir una de nuestras piezas, no solo llevas un accesorio...
+            Al elegir una de nuestras piezas, no solo llevas un accesorio, sino un fragmento de la vida y la pasión de quienes la elaboraron. Cada detalle, cada forma y cada brillo cuentan una historia que conecta a quien la lleva con la profundidad de su creación, convirtiendo la joyería en un testimonio tangible de momentos y significados que trascienden el tiempo.
             </p>
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function WorkshopSection() {
               <span className="block h-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 absolute left-0 bottom-[-8px] w-full"></span>
             </div>
             <p>
-              La creación de nuestras joyas es un viaje que exige dedicación y precisión...
+            La creación de nuestras joyas es un viaje que exige dedicación y precisión en cada etapa. Comenzamos seleccionando meticulosamente los mejores materiales, desde metales de alta calidad hasta piedras preciosas, asegurándonos de que cada elemento cumpla con nuestros estándares de excelencia para que cada pieza sea única.
             </p>
           </div>
         </div>
