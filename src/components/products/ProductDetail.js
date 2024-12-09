@@ -15,7 +15,7 @@ export const ProductDetail = ({ product }) => {
         <div className="w-full md:w-1/2 flex justify-center items-center order-1 md:order-1">
           <Image
             src={product.img}
-            alt={product.title}
+            alt={product.name}
             className="w-full md:w-4/5 h-auto object-cover rounded-lg shadow-xl"
             width={500} // Ajusta el ancho según sea necesario
             height={500} // Ajusta la altura según sea necesario

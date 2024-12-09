@@ -6,7 +6,7 @@ import { storage } from '@/src/firebase/config';
 import { generateUniqueSlug } from '@/src/utils/createSlug'; // Asegúrate de tener esta función disponible
 
 export const GET = async (req, { params }) => {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     // Obtiene el documento de la colección 'products'
@@ -33,7 +33,7 @@ export const GET = async (req, { params }) => {
 };
 
 export const PATCH = async (req, { params }) => {
-  const { id } = params;
+  const { id } = await params;
   const formData = await req.formData();
 
   try {
@@ -89,8 +89,6 @@ export const PATCH = async (req, { params }) => {
       );
     }
 
-    console.log(updates);
-
     // Actualizar el documento en Firestore
     await updateDoc(doc(db, 'products', id), updates);
 
@@ -110,7 +108,7 @@ export const PATCH = async (req, { params }) => {
 
 
 export const DELETE = async (req, { params }) => {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     // Elimina el documento de la colección 'products'

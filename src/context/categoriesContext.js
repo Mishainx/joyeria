@@ -23,6 +23,7 @@ export function CategoryProvider({ children }) {
           setCategories(data.payload);
         }
       } catch (error) {
+        console.error(error);
         console.error('Error fetching categories:', error);
       }
     };

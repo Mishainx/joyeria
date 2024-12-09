@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { collection, getDocs,addDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { db } from '@/src/firebase/config';
 import { cookies } from "next/headers";
 import { authAdmin } from '@/src/firebase/authManager.js';
@@ -8,10 +8,9 @@ import { generateUniqueSlug } from '@/src/utils/createSlug';
 import { generateSequentialSku } from '@/src/utils/createSku';
 import { categoryExists } from '@/src/utils/categoriesManager';
 import { storage } from '@/src/firebase/config';
-import { ref, uploadBytes,getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export const GET = async (req) => {
-
   try {
     const productsSnapshot = await getDocs(collection(db, 'products'));
     const products = productsSnapshot.docs.map((doc) => ({
@@ -20,7 +19,7 @@ export const GET = async (req) => {
     }));
 
     return NextResponse.json(
-      { message: 'success', payload:products },
+      { message: 'success', payload: products },
       { status: 200 }
     );
   } catch (error) {
@@ -34,16 +33,16 @@ export const GET = async (req) => {
 export const POST = async (req) => {
   try {
     // Obtener las cookies y el token
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const cookie = cookieStore.get("vg-ct");
-    
+
     if (!cookie || !cookie.value) {
       return NextResponse.json(
         { message: 'Unauthorized: No token provided' },
         { status: 401 }
       );
     }
-    
+
     const token = cookie.value;
     // Verificar el token con Firebase Admin SDK
     let decodedToken;
@@ -80,6 +79,7 @@ export const POST = async (req) => {
       img: ''   // Se asignará después
     };
 
+    // Validación adicional para categoría e imagen
     const validationErrors = validateProduct(productData);
 
     if (validationErrors.length > 0) {
@@ -89,44 +89,59 @@ export const POST = async (req) => {
       );
     }
 
-        // Verificar si la categoría existe
-        const categoryValid = await categoryExists(category);
-    
-        if (!categoryValid) {
-          return NextResponse.json(
-            { message: 'Invalid category' },
-            { status: 400 }
-          );
-        }
+    // Validar que la categoría no esté vacía
+    if (!category || category === '') {
+      return NextResponse.json(
+        { message: 'Category is required' },
+        { status: 400 }
+      );
+    }
+
+    // Verificar si la categoría existe
+    const categoryValid = await categoryExists(category);
+    if (!categoryValid) {
+      return NextResponse.json(
+        { message: 'Invalid category' },
+        { status: 400 }
+      );
+    }
+
+    // Validar que la imagen esté presente
+    if (!file) {
+      return NextResponse.json(
+        { message: 'Product image is required' },
+        { status: 400 }
+      );
+    }
 
     // Generar SKU y Slug
-    const sku = await generateSequentialSku("products")
-    const slug = await generateUniqueSlug(name)
+    const sku = await generateSequentialSku("products");
+    const slug = await generateUniqueSlug(name);
+
     // Subir la imagen a Firebase Storage
     let img = '';
     if (file) {
       const storageRef = ref(storage, `ProductImg/${file.name}`);
-      
       await uploadBytes(storageRef, file);
       img = await getDownloadURL(storageRef);
     }
 
-      // Crear el producto en Firestore
-      const productRef = await addDoc(collection(db, 'products'), {
-        name,
-        category,
-        price: parseFloat(price), // Asegurarse de almacenar el precio como número
-        description,
-        featured,
-        visible,
-        stock,
-        slug,
-        sku,
-        img
-      });
+    // Crear el producto en Firestore
+    const productRef = await addDoc(collection(db, 'products'), {
+      name,
+      category,
+      price: parseFloat(price), // Asegurarse de almacenar el precio como número
+      description,
+      featured,
+      visible,
+      stock,
+      slug,
+      sku,
+      img
+    });
 
     return NextResponse.json(
-      { message: 'Product created successfully'},
+      { message: 'Product created successfully' },
       { status: 201 }
     );
   } catch (error) {

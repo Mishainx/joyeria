@@ -5,7 +5,9 @@ import { notFound } from "next/navigation"; // Para redirigir a una página 404 
 
 export async function generateMetadata({ params }) {
   try {
-    const product = await fetchProductBySlug(params.slug);
+    const {slug} = await params;
+    const product = await fetchProductBySlug(slug);
+
 
     if (!product) {
       throw new Error('Product not found'); // Asegurarte de que no sea null
@@ -22,7 +24,7 @@ export async function generateMetadata({ params }) {
             url: product.img,
           },
         ],
-        url: `${process.env.NEXT_PUBLIC_URL}/products/${params.slug}`,
+        url: `${process.env.NEXT_PUBLIC_URL}/products/${slug}`,
       },
     };
   } catch (error) {
@@ -35,7 +37,7 @@ export async function generateMetadata({ params }) {
 }
 
 const ProductSlug = async ({ params }) => {
-  const { slug } = params;
+  const { slug } = await params;  // No es necesario await aquí
 
   try {
     const product = await fetchProductBySlug(slug);
@@ -46,9 +48,8 @@ const ProductSlug = async ({ params }) => {
 
     return <ProductContainer product={product} />;
   } catch (error) {
-    // Redirigir a una página 404 si el producto no se encuentra
-    notFound(); // Utiliza el método notFound de Next.js
-    return null; // Retorna null para evitar problemas adicionales
+    notFound(); // Redirigir a página 404 si no se encuentra el producto
+    return null;
   }
 };
 

@@ -8,7 +8,7 @@ export async function middleware(request) {
     return NextResponse.next();
   }
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const cookie = cookieStore.get('vg-ct');
 
   if (!cookie) {

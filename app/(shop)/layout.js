@@ -6,6 +6,7 @@ import Footer from "@/src/components/footer/footer";
 import { ProductProvider } from "@/src/context/productContext";
 import { CategoryProvider } from "@/src/context/categoriesContext";
 import TopButton from "@/src/components/topbutton/TopButton";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default async function RootLayout({ children }) {
         <ProductProvider>
           <Header  />
             {children}
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID} />
             <TopButton/>
           <Footer />
         </ProductProvider>
