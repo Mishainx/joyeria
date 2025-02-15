@@ -3,8 +3,18 @@ import { authAdmin } from '@/src/firebase/authManager'; // Importa la configurac
 
 export async function POST(req) {
   try {
-    // Obtener el token del cuerpo de la solicitud
-    const { token } = await req.json();
+    let data;
+    try {
+      // Intentar parsear el JSON
+      data = await req.json();
+    } catch (jsonError) {
+      return NextResponse.json(
+        { message: 'Invalid JSON format', error: jsonError.message },
+        { status: 400 }
+      );
+    }
+
+    const { token } = data;
 
     if (!token) {
       return NextResponse.json(
@@ -18,7 +28,6 @@ export async function POST(req) {
     try {
       decodedToken = await authAdmin.verifyIdToken(token);
     } catch (error) {
-      // El token es inválido, eliminar la cookie
       const response = NextResponse.json(
         { message: 'Invalid token' },
         { status: 401 }
@@ -33,7 +42,6 @@ export async function POST(req) {
       return response;
     }
 
-    // Devolver la información del usuario decodificado
     return NextResponse.json(
       { message: 'Token is valid', user: decodedToken },
       { status: 200 }
